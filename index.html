@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> pacheco Hola mundo 🌎 ❤️</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffebee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            max-width: 400px;
+            animation: pulse 2s infinite;
+        }
+        h1 {
+            color: #e91e63;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 25px;
+        }
+        .hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            top: 0;
+            left: 0;
+        }
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: #ff4081;
+            animation: float 4s ease-in-out infinite;
+            opacity: 0;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        button {
+            padding: 10px 25px;
+            font-size: 16px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        #yes {
+            background-color: #e91e63;
+            color: white;
+        }
+        #no {
+            background-color: #ddd;
+            color: #555;
+        }
+        #yes:hover {
+            background-color: #c2185b;
+            transform: scale(1.05);
+        }
+        #no:hover {
+            background-color: #ccc;
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.02);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>¿Quieres ser mi novia? ❤️</h1>
+        <p>Me harías muy feliz si aceptas. Prometo cuidarte y hacerte sonreír siempre.
+
+ANDRÉS PACHECO 💖
+</p>
+        
+        <div class="buttons">
+            <button id="yes">¡Sí! ❤️</button>
+            <button id="no">No 😢</button>
+        </div>
+        
+        <div class="hearts" id="hearts"></div>
+    </div>
+
+    <script>
+        const heartsContainer = document.getElementById('hearts');
+        const yesBtn = document.getElementById('yes');
+        const noBtn = document.getElementById('no');
+        
+        // Crear corazones flotantes
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = 3 + Math.random() * 5 + 's';
+            heartsContainer.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 4000);
+        }
+        
+        setInterval(createHeart, 300);
+        
+        // Efecto al hacer clic en "Sí"
+        yesBtn.addEventListener('click', () => {
+            document.querySelector('.container').innerHTML = `
+                <h1>¡Gracias! 🥹💖</h1>
+                <p>Ahora eres la persona más especial en mi vida. ¡Te prometo hacerte feliz! 🌟.  💖✨</p>
+                <div class="hearts" id="hearts"></div>
+            `;
+            setInterval(createHeart, 100); // Más corazones
+        });
+        
+        // Efecto al hacer clic en "No" (escapatoria divertida)
+        noBtn.addEventListener('mouseover', () => {
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = Math.random() * 80 + '%';
+            noBtn.style.top = Math.random() * 80 + '%';
+        });
+    </script>
+</body>
+</html>
